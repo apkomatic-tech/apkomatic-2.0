@@ -5,16 +5,9 @@ import { Global, css } from "@emotion/core"
 import { ThemeProvider } from "emotion-theming"
 
 import Header from "./header"
+import { siteTheme } from "../shared/theme"
+import { globalStyles } from "../shared/globalStyles"
 import "./layout.css"
-
-const theme = {
-  colors: {
-    black: "#070918",
-    lightGray: "#F3F5FA",
-    red: "#B60045",
-    blue: "#0051FF",
-  },
-}
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -29,12 +22,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={siteTheme}>
         <Global
           styles={css`
-            body {
-              background-color: #fff;
-            }
+            ${globalStyles}
           `}
         />
         <Header siteTitle={data.site.siteMetadata.title} />
