@@ -1,14 +1,16 @@
+import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 
 import { siteTheme } from "./theme"
 
 const { colors } = siteTheme
+const { blue, black, white, red } = colors
 const buttonBase = css`
   unset: all;
-  color: ${colors.white};
-  background-color: ${colors.black};
-  border: 2px solid ${colors.black};
+  color: ${white};
+  background-color: ${black};
+  border: 2px solid ${black};
   padding: 0.5rem 1rem;
   border-radius: 3px;
   font-weight: 600;

@@ -1,11 +1,14 @@
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import { useTheme } from "emotion-theming"
 
+import { MenuContext } from "../shared/context"
 import { ButtonGhostLink } from "../shared/buttonStyles"
+import TwitterLogo from "../images/icons8-twitter.svg"
+import EnvelopeLogo from "../images/enevelope-solid.svg"
 
 const LINKS = [
   {
@@ -30,9 +33,27 @@ const LINKS = [
   },
 ]
 
+const useHeaderHeight = () => {
+  const headerRef = useRef(null)
+  const headerHeight = useRef(0)
+
+  useEffect(() => {
+    console.log(`header initializied...${headerRef.current.clientHeight}px`)
+    headerHeight.current = `${headerRef.current.clientHeight}px`
+  }, [])
+
+  return {
+    headerRef,
+    headerHeight,
+  }
+}
+
 const Header = ({ siteTitle }) => {
-  const { colors } = useTheme()
+  const { colors, breakpoints } = useTheme()
   const { red, blue, black, lightGray, white, textColor } = colors
+  const { small, medium, large } = breakpoints
+  const menu = useContext(MenuContext)
+  const { headerRef, headerHeight } = useHeaderHeight()
 
   const TopHeader = styled.header`
     background: ${white};
@@ -42,7 +63,7 @@ const Header = ({ siteTitle }) => {
       align-items: center;
       justify-content: space-between;
       height: 80px;
-      @media (max-width: 767px) {
+      @media (max-width: ${small}px) {
         height: 60px;
       }
     }
@@ -52,13 +73,13 @@ const Header = ({ siteTitle }) => {
     }
 
     nav {
-      a:not(:last-child) {
+      > a:not(:last-child) {
         margin-right: 3.5rem;
       }
-      a {
+      > a {
         display: inline-block;
       }
-      a:not(.btn) {
+      > a:not(.btn) {
         color: ${textColor};
         font-weight: 600;
         transition: color 220ms linear;
@@ -71,7 +92,7 @@ const Header = ({ siteTitle }) => {
   `
 
   return (
-    <TopHeader>
+    <TopHeader ref={headerRef}>
       <div className="container-fluid">
         <Link
           css={css`
@@ -80,7 +101,7 @@ const Header = ({ siteTitle }) => {
             font-weight: 600;
             font-size: 2rem;
             margin: 0;
-            @media (min-width: 1024px) {
+            @media (min-width: ${medium}px) {
               font-size: 2.4rem;
             }
           `}
@@ -89,7 +110,15 @@ const Header = ({ siteTitle }) => {
         >
           {siteTitle}
         </Link>
-        <nav className="top-header__nav">
+        <nav
+          css={css`
+            display: flex;
+            align-items: center;
+            @media (max-width: ${small}px) {
+              display: none !important;
+            }
+          `}
+        >
           {LINKS.map(({ id, title, urlPath }) => {
             const isContact = urlPath.match(/\/contact/gi)
             const linkProps = { key: id, title, to: urlPath }
@@ -103,7 +132,49 @@ const Header = ({ siteTitle }) => {
               </Link>
             )
           })}
+          <div
+            css={css`
+              margin-left: 2rem;
+              display: flex;
+              align-items: center;
+              a:not(last-child) {
+                margin-right: 1rem;
+              }
+              img {
+                max-width: 25px;
+              }
+            `}
+          >
+            <a href="#">
+              <img src={TwitterLogo} alt="Twitter" />
+            </a>
+            <a href="#">
+              <img src={EnvelopeLogo} alt="Email" />
+            </a>
+          </div>
         </nav>
+        <nav
+          css={css`
+            display: ${menu.menuOpen ? "none" : "flex"};
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: ${headerHeight};
+          `}
+        >
+          Mobile Nav Menu
+        </nav>
+        <button
+          type="button"
+          css={css`
+            @media (min-width: ${small}px) {
+              display: none !important;
+            }
+          `}
+          onClick={() => menu.toggleMenu()}
+        >
+          Toggle Menu
+        </button>
       </div>
     </TopHeader>
   )

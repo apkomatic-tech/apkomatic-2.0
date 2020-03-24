@@ -7,4 +7,9 @@ export const siteTheme = {
     blue: "#0051FF",
     textColor: "rgba(7, 9, 24, .75)",
   },
+  breakpoints: {
+    small: 767,
+    medium: 1024,
+    large: 1120,
+  },
 }

@@ -1,6 +1,8 @@
-import { siteTheme } from "../theme"
+import { css } from "@emotion/core"
+import { siteTheme } from "./theme"
 
-const { colors } = siteTheme
+const { colors, breakpoints } = siteTheme
+const { small, medium, large } = breakpoints
 const globalStyles = css`
   html {
     font-size: 10px;
@@ -41,6 +43,12 @@ const globalStyles = css`
     margin: 0;
   }
 
+  img {
+    width: 100%;
+    display: block;
+    height: auto;
+  }
+
   .text-center {
     text-align: center;
   }
@@ -63,13 +71,13 @@ const globalStyles = css`
     font-weight: 600;
   }
 
-  @media (min-width: 1024px) and (max-width: 1120px) {
+  @media (min-width: ${medium}px) and (max-width: ${large}px) {
     .h1,
     h1 {
       font-size: 1.8rem;
     }
   }
-  @media (min-width: 1120px) {
+  @media (min-width: ${large}px) {
     body {
       font-size: 1.6rem;
     }
