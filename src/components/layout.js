@@ -20,8 +20,8 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const toggleMenu = () => setMenuOpen(!menuOpen)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
     <>
@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
         />
         <MenuContext.Provider
           value={{
-            menuOpen,
+            isMenuOpen,
             toggleMenu,
           }}
         >

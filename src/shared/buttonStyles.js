@@ -7,7 +7,7 @@ import { siteTheme } from "./theme"
 const { colors } = siteTheme
 const { blue, black, white, red } = colors
 const buttonBase = css`
-  unset: all;
+  appearance: none;
   color: ${white};
   background-color: ${black};
   border: 2px solid ${black};
