@@ -16,8 +16,15 @@ const GhostButton = styled.button`
   ${baseButtonOutline};
   transition: 150ms linear;
 `
+const GhostButtonLink = styled(Link)`
+  ${baseButtonOutline};
+  ${tw`no-underline`};
+  &.active {
+    ${tw`bg-blue-900 text-white`}
+  }
+`
 
-export { Button, GhostButton }
+export { Button, GhostButton, GhostButtonLink }
 
 const { colors } = siteTheme
 // const { blue, black, white, red } = colors
