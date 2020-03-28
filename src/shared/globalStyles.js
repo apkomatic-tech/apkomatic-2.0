@@ -7,10 +7,10 @@ const globalStyles = css`
     ${tw`text-black`};
   }
   .h1 {
-    ${tw`text-3xl mb-3 font-semibold`}
+    ${tw`text-3xl mb-2 font-semibold`}
   }
   p {
-    ${tw`text-base text-dark mb-3 leading-snug`}
+    ${tw`text-base text-dark mb-2 leading-snug`}
   }
   // TODO: create typography module
   .container,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import tw from "twin.macro"
@@ -7,6 +7,8 @@ import { motion } from "framer-motion"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Button } from "../shared/buttonStyles"
+
+// TODO: add submit functionality. Right now form is not functional
 
 const StyledLabel = styled.label`
   ${tw`font-semibold inline-block text-dark mb-1 leading-tight cursor-pointer`}
@@ -19,34 +21,40 @@ const StyledFieldSet = styled.fieldset`
   ${tw`mb-5`}
 `
 
-const useForm = () => {
-  const [inputs, setInputs] = useState(() => {
-    return {
-      name: "",
-      email: "",
-    }
+const useForm = (key, initialValues = { name: "", email: "" }) => {
+  const [state, setState] = useState(() => {
+    const formDataLocal = JSON.parse(window.localStorage.getItem("formData"))
+    return formDataLocal ? { ...formDataLocal } : { ...initialValues }
   })
 
-  const handleInputChange = (input, value) => {
-    setInputs({
-      ...inputs,
-      [input]: value,
+  const setInputs = input => {
+    const { value, name } = input
+    setState({
+      ...state,
+      [name]: value,
     })
   }
-  useEffect(() => {
-    console.log("input updated")
-  }, [inputs])
 
-  return [inputs, handleInputChange]
+  const resetInputs = () => {
+    setState({
+      name: "",
+      email: "",
+    })
+  }
+
+  useEffect(() => {
+    window.localStorage.setItem("formData", JSON.stringify(state))
+  }, [state])
+
+  return [state, setInputs, resetInputs]
 }
 
 const ContactUsPage = () => {
-  const [fieldInputs, handleInputChange] = useForm()
+  const [fieldInputs, setFieldInputs, resetFieldInputs] = useForm()
 
   function handleFormSubmit(event) {
     event.preventDefault()
-    const name = event.target.elements["name"].value
-    const email = event.target.elements["email"].value
+    resetFieldInputs()
   }
   return (
     <Layout>
@@ -54,7 +62,8 @@ const ContactUsPage = () => {
       <div
         className="container"
         css={css`
-          ${tw`max-w-sm mb-20 mt-10`}
+          ${tw`max-w-sm mb-20 mt-10 flex flex-col justify-center`}
+          height: 50vh;
         `}
       >
         <h1 className="h1">Contact Us</h1>
@@ -70,7 +79,8 @@ const ContactUsPage = () => {
               id="name"
               name="name"
               type="text"
-              onChange={e => handleInputChange(e.target.name, e.target.value)}
+              value={fieldInputs.name}
+              onChange={e => setFieldInputs(e.target)}
               required
             />
           </StyledFieldSet>
@@ -85,7 +95,8 @@ const ContactUsPage = () => {
               id="email"
               name="email"
               type="email"
-              onChange={e => handleInputChange(e.target.name, e.target.value)}
+              value={fieldInputs.email}
+              onChange={e => setFieldInputs(e.target)}
               required
             />
           </StyledFieldSet>
@@ -96,11 +107,14 @@ const ContactUsPage = () => {
           >
             <Button
               whileTap={{
-                scale: 0.85,
+                scale: 0.95,
               }}
-              initial={{ y: 20 }}
+              initial={{ y: 10 }}
               animate={{
                 y: 0,
+              }}
+              transition={{
+                duration: 0.1,
               }}
               fullWidth
               type="submit"
