@@ -10,7 +10,7 @@ import navLinks from "./navigation/navlinks"
 import MobileMenu from "./navigation/MobileMenu"
 
 import { MenuContext } from "../shared/context"
-import { GhostButton } from "../shared/buttonStyles"
+import { GhostButton, GhostButtonLink } from "../shared/buttonStyles"
 import { FaTwitter, FaEnvelopeOpen } from "react-icons/fa"
 import TwitterLogo from "../images/icons8-twitter.svg"
 import EnvelopeLogo from "../images/enevelope-solid.svg"
@@ -29,6 +29,30 @@ const useHeaderHeight = () => {
   }
 }
 
+const headerSocialIconStyle = tw`h-10 mr-3 flex items-center text-gray-700`
+
+const StyledHeader = styled.header`
+  ${tw`bg-white`};
+  .container,
+  .container-fluid {
+    ${tw`flex items-center justify-between`}
+    height: 80px;
+  }
+
+  nav {
+    > a:not(.btn) {
+      transition: color 220ms linear;
+    }
+  }
+`
+
+const StyledNavLink = styled(Link)`
+  ${tw`no-underline text-black hover:text-blue-900 mr-8`};
+  &.active {
+    ${tw`text-blue-900`};
+  }
+`
+
 const Header = ({ siteTitle }) => {
   const { colors, breakpoints } = useTheme()
   const { red, blue, black, lightGray, white, textColor } = colors
@@ -36,29 +60,12 @@ const Header = ({ siteTitle }) => {
   const { isMenuOpen, toggleMenu } = useContext(MenuContext)
   const { headerRef, headerHeight } = useHeaderHeight()
 
-  const TopHeader = styled.header`
-    background: ${white};
-    .container,
-    .container-fluid {
-      ${tw`flex items-center justify-between`}
-      height: 80px;
-      @media (max-width: ${small}px) {
-        height: 60px;
-      }
-    }
-
-    nav {
-      > a:not(.btn) {
-        transition: color 220ms linear;
-      }
-    }
-  `
   return (
-    <TopHeader ref={headerRef}>
+    <StyledHeader ref={headerRef}>
       <div className="container-fluid">
         <Link
           css={css`
-            ${tw`text-lg md:text-xl m-0 text-black font-semibold no-underline`}
+            ${tw`text-xl md:text-2xl m-0 text-black font-semibold no-underline`}
           `}
           to="/"
         >
@@ -73,38 +80,36 @@ const Header = ({ siteTitle }) => {
             const isContact = urlPath.match(/\/contact/gi)
             const linkProps = { key: id, title, to: urlPath }
             return isContact ? (
-              <GhostButton {...linkProps}>{title}</GhostButton>
-            ) : (
-              <Link
-                css={css`
-                  ${tw`no-underline text-black hover:text-blue-900 mr-8`}
-                `}
-                {...linkProps}
-              >
+              <GhostButtonLink activeClassName="active" {...linkProps}>
                 {title}
-              </Link>
+              </GhostButtonLink>
+            ) : (
+              <StyledNavLink activeClassName="active" {...linkProps}>
+                {title}
+              </StyledNavLink>
             )
           })}
           <div
             css={css`
-              ${tw`ml-10 flex items-center text-2xl`};
+              ${tw`ml-12 flex items-center text-2xl`};
             `}
           >
             <a
               href="#"
               css={css`
-                ${tw`h-10 mr-3 text-black flex items-center`}
+                ${headerSocialIconStyle};
+                ${tw`mr-3`};
               `}
             >
-              <FaTwitter />
+              <FaEnvelopeOpen />
             </a>
             <a
               href="#"
               css={css`
-                ${tw`h-10 text-black flex items-center`}
+                ${headerSocialIconStyle};
               `}
             >
-              <FaEnvelopeOpen />
+              <FaTwitter />
             </a>
           </div>
         </nav>
@@ -140,7 +145,7 @@ const Header = ({ siteTitle }) => {
         </button>
         <MobileMenu isMenuOpen={isMenuOpen} />
       </div>
-    </TopHeader>
+    </StyledHeader>
   )
 }
 
