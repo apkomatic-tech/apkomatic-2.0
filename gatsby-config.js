@@ -1,3 +1,4 @@
+// TODO: google analytics
 module.exports = {
   siteMetadata: {
     title: `Apkomatic`,
