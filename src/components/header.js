@@ -11,6 +11,7 @@ import MobileMenu from "./navigation/MobileMenu"
 
 import { MenuContext } from "../shared/context"
 import { GhostButton } from "../shared/buttonStyles"
+import { FaTwitter, FaEnvelopeOpen } from "react-icons/fa"
 import TwitterLogo from "../images/icons8-twitter.svg"
 import EnvelopeLogo from "../images/enevelope-solid.svg"
 
@@ -39,7 +40,7 @@ const Header = ({ siteTitle }) => {
     background: ${white};
     .container,
     .container-fluid {
-      ${tw`flex items-center content-between`}
+      ${tw`flex items-center justify-between`}
       height: 80px;
       @media (max-width: ${small}px) {
         height: 60px;
@@ -47,20 +48,8 @@ const Header = ({ siteTitle }) => {
     }
 
     nav {
-      > a:not(:last-child) {
-        margin-right: 3.5rem;
-      }
-      > a {
-        display: inline-block;
-      }
       > a:not(.btn) {
-        color: ${textColor};
-        font-weight: 600;
         transition: color 220ms linear;
-        &:hover,
-        &.active {
-          color: ${blue};
-        }
       }
     }
   `
@@ -69,7 +58,7 @@ const Header = ({ siteTitle }) => {
       <div className="container-fluid">
         <Link
           css={css`
-            ${tw`text-3xl md:text-4xl m-0 text-black font-semibold no-underline`}
+            ${tw`text-lg md:text-xl m-0 text-black font-semibold no-underline`}
           `}
           to="/"
         >
@@ -88,7 +77,7 @@ const Header = ({ siteTitle }) => {
             ) : (
               <Link
                 css={css`
-                  ${tw`no-underline text-black hover:text-blue-900 mr-3`}
+                  ${tw`no-underline text-black hover:text-blue-900 mr-8`}
                 `}
                 {...linkProps}
               >
@@ -98,22 +87,24 @@ const Header = ({ siteTitle }) => {
           })}
           <div
             css={css`
-              margin-left: 2rem;
-              display: flex;
-              align-items: center;
-              a:not(last-child) {
-                margin-right: 1rem;
-              }
-              img {
-                max-width: 25px;
-              }
+              ${tw`ml-10 flex items-center text-2xl`};
             `}
           >
-            <a href="#">
-              <img src={TwitterLogo} alt="Twitter" />
+            <a
+              href="#"
+              css={css`
+                ${tw`h-10 mr-3 text-black flex items-center`}
+              `}
+            >
+              <FaTwitter />
             </a>
-            <a href="#">
-              <img src={EnvelopeLogo} alt="Email" />
+            <a
+              href="#"
+              css={css`
+                ${tw`h-10 text-black flex items-center`}
+              `}
+            >
+              <FaEnvelopeOpen />
             </a>
           </div>
         </nav>
@@ -121,33 +112,25 @@ const Header = ({ siteTitle }) => {
         <button
           type="button"
           css={css`
+            ${tw`w-8 h-3 bg-white border-0 outline-none relative z-10 block md:hidden`};
             appearance: none;
-            background: ${white};
-            display: block;
-            width: 3rem;
-            height: 1.25rem;
-            border: 0;
-            position: relative;
-            z-index: 1;
             span {
-              position: absolute;
-              z-index: 2;
-
-              height: 3px;
-              background: ${black};
+              ${tw`absolute z-20 bg-black`}
+              height: 2px;
               &:first-child {
                 left: 0;
                 width: 100%;
                 top: 0;
               }
               &:last-child {
-                width: 38%;
+                width: 50%;
                 bottom: 0;
                 right: 0;
+                transition: width 200ms ease;
               }
             }
-            @media (min-width: ${small}px) {
-              display: none !important;
+            &:hover span:last-child {
+              width: 100%;
             }
           `}
           onClick={() => toggleMenu()}

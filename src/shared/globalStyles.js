@@ -1,17 +1,13 @@
 import { css } from "@emotion/core"
 import { siteTheme } from "./theme"
+import tw from "twin.macro"
 
 const { colors, breakpoints } = siteTheme
 const { small, medium, large } = breakpoints
 const globalStyles = css`
-  html {
-    font-size: 10px;
-  }
   body {
-    background-color: ${colors.white};
-    font-weight: 400;
     font-family: "Baloo Da 2", sans-serif;
-    color: ${colors.textColor};
+    color: ${tw`text-black`};
   }
   .container {
     max-width: 1120px;

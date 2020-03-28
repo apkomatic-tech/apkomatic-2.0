@@ -5,8 +5,8 @@ import tw from "twin.macro"
 
 import { siteTheme } from "./theme"
 
-const baseButton = tw`bg-blue-900 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded`
-const baseButtonOutline = tw`bg-transparent hover:bg-blue-900 text-blue-900 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded`
+const baseButton = tw`bg-blue-900 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded`
+const baseButtonOutline = tw`bg-transparent hover:bg-blue-900 text-blue-900 font-semibold hover:text-white py-1 px-4 border border-blue-900 hover:border-transparent rounded`
 
 const Button = styled.button`
   ${baseButton};

@@ -3,7 +3,8 @@ import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import { motion } from "framer-motion"
 import { useTheme } from "emotion-theming"
-import { IoMdClose } from "react-icons/io"
+import { FaTimes } from "react-icons/fa"
+import tw from "twin.macro"
 
 import { MenuContext } from "../../shared/context"
 import navLinks from "./navlinks"
@@ -31,66 +32,53 @@ const MobileMenu = () => {
         duration: 0.25,
       }}
       css={css`
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        top: 0;
-        left: 0;
+        ${tw`fixed w-full h-full z-50 top-0 left-0 text-xl font-semibold md:hidden`}
         background-color: ${lightGray};
         pointer-events: ${isMenuOpen ? "auto" : "none"};
-        border: 2px solid ${black};
-        font-size: 2rem;
-        font-weight: 600;
         header {
-          padding: 3rem;
+          ${tw`p-6`};
         }
         nav {
-          padding: 0 3rem 0 4rem;
-        }
-        @media (min-width: ${small}px) {
-          display: none !important;
+          ${tw`pr-6 pl-4`}
         }
       `}
     >
       <header
         css={css`
+          ${tw`flex justify-end items-center`}
           height: 60px;
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
         `}
       >
         <button
           type="button"
           onClick={toggleMenu}
           css={css`
-            appearance: none;
-            border: 0;
-            text-transform: uppercase;
-            background-color: transparent;
-            cursor: pointer;
-            svg {
-              max-width: 40px;
-            }
+            ${tw`border-0 uppercase bg-transparent cursor-pointer text-2xl`}
           `}
         >
-          <IoMdClose />
+          <FaTimes />
         </button>
       </header>
       <nav
         css={css`
-          display: flex;
-          flex-direction: column;
-          margin-top: 4rem;
+          ${tw`flex flex-col mt-8`}
           a:not(:last-child) {
-            margin-bottom: 3rem;
+            ${tw`mb-5`}
           }
         `}
       >
-        {navLinks.map(({ id, title, urlPath }) => {
+        {navLinks.map(({ id, title, urlPath }, ix) => {
           const linkProps = { key: id, title, to: urlPath }
-          return <Link {...linkProps}>{title}</Link>
+          return (
+            <Link
+              {...linkProps}
+              css={css`
+                ${tw`text-black no-underline`}
+              `}
+            >
+              {title}
+            </Link>
+          )
         })}
       </nav>
     </motion.div>
