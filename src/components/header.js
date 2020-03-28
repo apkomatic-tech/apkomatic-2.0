@@ -3,17 +3,12 @@ import React, { useContext, useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
-import { useTheme } from "emotion-theming"
 import tw from "twin.macro"
 
 import navLinks from "./navigation/navlinks"
 import MobileMenu from "./navigation/MobileMenu"
 
 import { MenuContext } from "../shared/context"
-import { GhostButton, GhostButtonLink } from "../shared/buttonStyles"
-import { FaTwitter, FaEnvelopeOpen } from "react-icons/fa"
-import TwitterLogo from "../images/icons8-twitter.svg"
-import EnvelopeLogo from "../images/enevelope-solid.svg"
 
 const useHeaderHeight = () => {
   const headerRef = useRef(null)
@@ -45,18 +40,15 @@ const StyledHeader = styled.header`
 `
 
 const StyledNavLink = styled(Link)`
-  ${tw`no-underline text-black hover:text-blue-900 mr-8`};
+  ${tw`no-underline text-black hover:text-blue-900 mr-5 uppercase`};
   &.active {
     ${tw`text-blue-900`};
   }
 `
 
 const Header = ({ siteTitle }) => {
-  const { colors, breakpoints } = useTheme()
-  const { red, blue, black, lightGray, white, textColor } = colors
-  const { small, medium, large } = breakpoints
   const { isMenuOpen, toggleMenu } = useContext(MenuContext)
-  const { headerRef, headerHeight } = useHeaderHeight()
+  const { headerRef } = useHeaderHeight()
 
   return (
     <StyledHeader ref={headerRef}>
