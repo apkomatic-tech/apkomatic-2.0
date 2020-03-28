@@ -63,11 +63,15 @@ const ContactUsPage = () => {
         className="container"
         css={css`
           ${tw`max-w-sm mb-20 mt-10 flex flex-col justify-center`}
-          height: 50vh;
+          min-height: 50vh;
         `}
       >
         <h1 className="h1">Contact Us</h1>
-        <p>
+        <p
+          css={css`
+            ${tw`mb-6`}
+          `}
+        >
           Contact us for a free quote. We respond within 24 hours of your
           request.
         </p>
