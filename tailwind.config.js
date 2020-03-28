@@ -1,3 +1,4 @@
+// TODO: customize colors, sizes, etc
 module.exports = {
   theme: {
     extend: {
