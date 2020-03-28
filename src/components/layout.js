@@ -5,6 +5,7 @@ import { Global, css } from "@emotion/core"
 import { ThemeProvider } from "emotion-theming"
 
 import Header from "./header"
+import Footer from "./footer"
 import { siteTheme } from "../shared/theme"
 import { MenuContext } from "../shared/context"
 import { globalStyles } from "../shared/globalStyles"
@@ -39,7 +40,7 @@ const Layout = ({ children }) => {
         >
           <Header siteTitle={data.site.siteMetadata.title} />
           <main>{children}</main>
-          <footer>Footer</footer>
+          <Footer siteTitle={data.site.siteMetadata.title} />
         </MenuContext.Provider>
       </ThemeProvider>
     </>
