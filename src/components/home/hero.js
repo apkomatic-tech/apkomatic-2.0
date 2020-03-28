@@ -30,30 +30,73 @@ const Hero = ({ heading, subheading }) => {
           ${tw`flex flex-col justify-center`}
         `}
       >
-        <h1
+        <motion.h1
+          initial={{
+            y: -45,
+          }}
+          animate={{
+            y: 0,
+          }}
           css={css`
             ${tw`text-center text-4xl md:text-6xl font-semibold leading-tight mb-2`}
           `}
         >
           {heading}
-        </h1>
-        <p
+        </motion.h1>
+        <motion.p
+          initial={{
+            opacity: 0.01,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.25,
+          }}
           css={css`
             ${tw`text-center text-base md:text-xl text-dark mb-5 leading-tight`}
           `}
         >
           {subheading}
-        </p>
-        <ButtonLink
+        </motion.p>
+        <motion.div
           css={css`
-            ${tw`self-center`}
+            ${tw`mx-auto mt-6`}
           `}
-          to="/contact"
+          initial={{
+            y: 45,
+            opacity: 0.01,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.38,
+          }}
         >
-          Contact Us
-        </ButtonLink>
+          <ButtonLink
+            css={css`
+              ${tw`self-center`}
+            `}
+            to="/contact"
+          >
+            Contact Us
+          </ButtonLink>
+        </motion.div>
       </div>
-      <img
+      <motion.img
+        initial={{
+          y: 10,
+        }}
+        animate={{
+          y: 0,
+        }}
+        transition={{
+          delay: 0.75,
+          duration: 1,
+          yoyo: Infinity,
+        }}
         css={css`
           ${tw`
             w-6
