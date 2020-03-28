@@ -10,7 +10,7 @@ import navLinks from "./navigation/navlinks"
 import MobileMenu from "./navigation/MobileMenu"
 
 import { MenuContext } from "../shared/context"
-import { ButtonGhostLink } from "../shared/buttonStyles"
+import { GhostButton } from "../shared/buttonStyles"
 import TwitterLogo from "../images/icons8-twitter.svg"
 import EnvelopeLogo from "../images/enevelope-solid.svg"
 
@@ -39,17 +39,11 @@ const Header = ({ siteTitle }) => {
     background: ${white};
     .container,
     .container-fluid {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      ${tw`flex items-center content-between`}
       height: 80px;
       @media (max-width: ${small}px) {
         height: 60px;
       }
-    }
-
-    a {
-      text-decoration: none;
     }
 
     nav {
@@ -70,42 +64,34 @@ const Header = ({ siteTitle }) => {
       }
     }
   `
-
   return (
     <TopHeader ref={headerRef}>
       <div className="container-fluid">
         <Link
           css={css`
-            color: ${black};
-            text-decoration: none;
-            margin: 0;
-            @media (min-width: ${medium}px) {
-              font-size: 2.4rem;
-            }
+            ${tw`text-3xl md:text-4xl m-0 text-black font-semibold no-underline`}
           `}
           to="/"
-          className="h1 uppercase"
         >
           {siteTitle}
         </Link>
         <nav
           css={css`
-            display: flex;
-            align-items: center;
-            @media (max-width: ${small}px) {
-              display: none !important;
-            }
+            ${tw`md:flex md:items-center hidden`}
           `}
         >
           {navLinks.map(({ id, title, urlPath }) => {
             const isContact = urlPath.match(/\/contact/gi)
             const linkProps = { key: id, title, to: urlPath }
             return isContact ? (
-              <ButtonGhostLink className="btn" {...linkProps}>
-                {title}
-              </ButtonGhostLink>
+              <GhostButton {...linkProps}>{title}</GhostButton>
             ) : (
-              <Link activeClassName="active" {...linkProps}>
+              <Link
+                css={css`
+                  ${tw`no-underline text-black hover:text-blue-900 mr-3`}
+                `}
+                {...linkProps}
+              >
                 {title}
               </Link>
             )

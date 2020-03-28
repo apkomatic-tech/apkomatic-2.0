@@ -10,7 +10,6 @@ const globalStyles = css`
   body {
     background-color: ${colors.white};
     font-weight: 400;
-    font-size: 1.4rem;
     font-family: "Baloo Da 2", sans-serif;
     color: ${colors.textColor};
   }
@@ -23,13 +22,6 @@ const globalStyles = css`
     margin: auto;
     width: 95%;
     padding: 0 0.5rem;
-  }
-  .h1,
-  h1 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: ${colors.black};
-    margin: 0 0 1.6rem;
   }
 
   a {
@@ -47,44 +39,6 @@ const globalStyles = css`
     width: 100%;
     display: block;
     height: auto;
-  }
-
-  .text-center {
-    text-align: center;
-  }
-  .text-right {
-    text-align: right;
-  }
-  .text-left {
-    text-align: left;
-  }
-  .uppercase {
-    text-decoration: uppercase;
-  }
-  .lowercase {
-    text-decoration: lowercase;
-  }
-  .underline {
-    text-decoration: underline;
-  }
-  .bold {
-    font-weight: 600;
-  }
-
-  @media (min-width: ${medium}px) and (max-width: ${large}px) {
-    .h1,
-    h1 {
-      font-size: 1.8rem;
-    }
-  }
-  @media (min-width: ${large}px) {
-    body {
-      font-size: 1.6rem;
-    }
-    .h1,
-    h1 {
-      font-size: 2.4rem;
-    }
   }
 `
 
