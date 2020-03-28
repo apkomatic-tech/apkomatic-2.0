@@ -4,7 +4,13 @@ import tw from "twin.macro"
 const globalStyles = css`
   body {
     font-family: "Baloo Da 2", sans-serif;
-    color: ${tw`text-black`};
+    ${tw`text-black`};
+  }
+  .h1 {
+    ${tw`text-3xl mb-3 font-semibold`}
+  }
+  p {
+    ${tw`text-base text-dark mb-3 leading-snug`}
   }
   // TODO: create typography module
   .container,
