@@ -29,8 +29,6 @@ const useHeaderHeight = () => {
   }
 }
 
-const headerSocialIconStyle = tw`h-10 mr-3 flex items-center text-gray-700`
-
 const StyledHeader = styled.header`
   ${tw`bg-white`};
   .container,
@@ -74,44 +72,19 @@ const Header = ({ siteTitle }) => {
         <nav
           css={css`
             ${tw`md:flex md:items-center hidden`}
+            a:last-child {
+              ${tw`mr-0`}
+            }
           `}
         >
           {navLinks.map(({ id, title, urlPath }) => {
-            const isContact = urlPath.match(/\/contact/gi)
             const linkProps = { key: id, title, to: urlPath }
-            return isContact ? (
-              <GhostButtonLink activeClassName="active" {...linkProps}>
-                {title}
-              </GhostButtonLink>
-            ) : (
+            return (
               <StyledNavLink activeClassName="active" {...linkProps}>
                 {title}
               </StyledNavLink>
             )
           })}
-          <div
-            css={css`
-              ${tw`ml-12 flex items-center text-2xl`};
-            `}
-          >
-            <a
-              href="#"
-              css={css`
-                ${headerSocialIconStyle};
-                ${tw`mr-3`};
-              `}
-            >
-              <FaEnvelopeOpen />
-            </a>
-            <a
-              href="#"
-              css={css`
-                ${headerSocialIconStyle};
-              `}
-            >
-              <FaTwitter />
-            </a>
-          </div>
         </nav>
 
         <button
