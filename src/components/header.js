@@ -87,19 +87,19 @@ const Header = ({ siteTitle }) => {
             span {
               ${tw`absolute z-20 bg-black`}
               height: 2px;
-              &:first-child {
+              &:first-of-type {
                 left: 0;
                 width: 100%;
                 top: 0;
               }
-              &:last-child {
+              &:last-of-type {
                 width: 50%;
                 bottom: 0;
                 right: 0;
                 transition: width 200ms ease;
               }
             }
-            &:hover span:last-child {
+            &:hover span:last-of-type {
               width: 100%;
             }
           `}
