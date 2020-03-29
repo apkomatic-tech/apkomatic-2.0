@@ -60,9 +60,9 @@ const ContactUsPage = () => {
     <Layout>
       <SEO title="Contact Us" />
       <div
-        className="container"
+        className="container-fluid"
         css={css`
-          ${tw`max-w-sm mb-20 mt-10 flex flex-col justify-center`}
+          ${tw`max-w-md mb-20 mt-10 flex flex-col justify-center`}
           min-height: 50vh;
         `}
       >
