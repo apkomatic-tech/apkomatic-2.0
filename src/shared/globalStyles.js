@@ -3,14 +3,27 @@ import tw from "twin.macro"
 
 const globalStyles = css`
   body {
-    font-family: "Baloo Da 2", sans-serif;
-    ${tw`text-black`};
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    ${tw`text-black text-lg`};
   }
+  h1,
+  .h1,
+  h2,
+  .h2 {
+    font-family: "Poppins", sans-serif;
+    ${tw`font-semibold`}
+  }
+  h1,
   .h1 {
-    ${tw`text-3xl mb-2 font-semibold`}
+    ${tw`mb-4 text-4xl`}
+  }
+  h2,
+  .h2 {
+    ${tw`mb-2 text-2xl`}
   }
   p {
-    ${tw`text-base text-dark mb-2 leading-snug`}
+    ${tw`text-dark mb-2 leading-snug`}
   }
   // TODO: create typography module
   .container,
