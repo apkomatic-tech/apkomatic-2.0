@@ -11,6 +11,7 @@ import FeaturedImageDesign from "../images/featured-design.svg"
 import FeaturedImageCode from "../images/featured-code.svg"
 import FeaturedImageCustomer from "../images/featured-convo.svg"
 import Testimonials from "../components/testimonials"
+import { ButtonLink } from "../shared/buttonStyles"
 
 const StyledFeature = styled(motion.section)`
   ${tw`mb-10 md:mb-24`}
@@ -114,6 +115,24 @@ const IndexPage = () => (
       </div>
     </div>
     <Testimonials />
+    <div
+      className="inverse"
+      css={css`
+        ${tw`flex py-24 px-6 items-center justify-center text-center flex-col bg-black`}
+        h2, p {
+          margin-bottom: 1.5rem;
+        }
+      `}
+    >
+      <h2>Ready to Get Started</h2>
+      <p>
+        Drop us a line. It only takes a few minutes. We will take care of the
+        rest.
+      </p>
+      <ButtonLink red to="/contact">
+        Get a Quote
+      </ButtonLink>
+    </div>
   </Layout>
 )
 
