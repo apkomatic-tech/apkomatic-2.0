@@ -10,6 +10,7 @@ import Hero from "../components/home/hero"
 import FeaturedImageDesign from "../images/featured-design.svg"
 import FeaturedImageCode from "../images/featured-code.svg"
 import FeaturedImageCustomer from "../images/featured-convo.svg"
+import Testimonials from "../components/testimonials"
 
 const StyledFeature = styled(motion.section)`
   ${tw`mb-10 md:mb-24`}
@@ -112,6 +113,7 @@ const IndexPage = () => (
         </StyledFeature>
       </div>
     </div>
+    <Testimonials />
   </Layout>
 )
 
