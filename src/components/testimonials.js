@@ -48,8 +48,8 @@ const Testimonials = () => {
           </TItem>
         ))}
       </div>
-      <div className="tArrow swiper-button-next swiper-button-white"></div>
-      <div className="tArrow swiper-button-prev swiper-button-white"></div>
+      <div className="tArrow swiper-button-next"></div>
+      <div className="tArrow swiper-button-prev"></div>
       <TPagination className="swiper-pagination" />
     </TSection>
   )

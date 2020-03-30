@@ -2,24 +2,23 @@ import styled from "@emotion/styled"
 import tw from "twin.macro"
 
 const TSection = styled.section`
-  ${tw`bg-black relative`}
+  ${tw`bg-gray text-black relative`}
   min-height: 20rem;
   padding: 8rem 0;
   position: relative;
   z-index: 1;
   clip-path: polygon(0 7%, 100% 0, 100% 100%, 0 100%);
   .tArrow {
-    ${tw`hidden md:block`}
+    ${tw`hidden md:block text-black outline-none`}
   }
 `
 
 const TTitle = styled.div`
-  ${tw`text-white flex items-center justify-center mb-8 px-2`};
+  ${tw`text-black flex items-center justify-center mb-8 px-2`};
 `
 
 const TItem = styled.article`
-  ${tw`flex justify-center items-center`}
-  color: rgba(255,255,255, 0.9);
+  ${tw`flex justify-center items-center text-dark`}
 `
 const TItemInner = styled.div`
   ${tw`p-10 mx-2`}
@@ -41,13 +40,12 @@ const TCompany = styled.section`
 const TPagination = styled.div`
   bottom: 35px !important;
   .swiper-pagination-bullet {
-    ${tw`bg-white`}
-    width: 16px;
-    height: 16px;
-    opacity: 0.5;
+    ${tw`bg-black opacity-75`}
+    width: 20px;
+    height: 20px;
   }
   .swiper-pagination-bullet-active {
-    ${tw`bg-yellow`}
+    ${tw`bg-blue-900`}
     opacity: 1;
   }
 `
