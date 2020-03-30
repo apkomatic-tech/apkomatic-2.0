@@ -11,6 +11,9 @@ import { MenuContext } from "../shared/context"
 import { globalStyles } from "../shared/globalStyles"
 import "./layout.css"
 
+// TODO: add ErrorBoundary
+// ref: https://github.com/bvaughn/react-error-boundary
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
