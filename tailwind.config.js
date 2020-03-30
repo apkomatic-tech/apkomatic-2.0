@@ -5,7 +5,7 @@ module.exports = {
       colors: {
         white: "#FFF",
         gray: "#F3F5FA",
-        dark: "rgba(7,9,18,.85)",
+        dark: "rgba(7,9,24,.71)",
         black: "#070918",
         yellow: "#ffc400",
         blue: {
