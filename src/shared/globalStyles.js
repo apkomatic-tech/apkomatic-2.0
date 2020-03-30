@@ -5,7 +5,7 @@ const globalStyles = css`
   body {
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 400;
-    ${tw`text-black text-lg`};
+    ${tw`text-dark text-lg leading-normal`};
   }
   h1,
   .h1,
@@ -23,7 +23,16 @@ const globalStyles = css`
     ${tw`mb-2 text-2xl`}
   }
   p {
-    ${tw`text-dark mb-2 leading-snug`}
+    ${tw`text-dark mb-2`}
+  }
+  .inverse h1,
+  .inverse h2,
+  .inverse .h1,
+  .inverse .h2 {
+    ${tw`text-white`}
+  }
+  .inverse * {
+    color: rgba(255, 255, 255, 0.79);
   }
   // TODO: create typography module
   .container,

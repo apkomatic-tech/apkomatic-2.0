@@ -20,6 +20,7 @@ const GhostButton = styled(motion.button)`
 const ButtonLink = styled(Link)`
   ${baseButton};
   ${tw`no-underline`};
+  ${props => (props.red ? tw`bg-red border-red` : ``)}
 `
 const GhostButtonLink = styled(Link)`
   ${baseButtonOutline};
